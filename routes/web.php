@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/login', [AuthenticatedSessionController::class, 'create'])
+    ->name('login')
+;
+
+Route::post('/login', [AuthenticatedSessionController::class, 'store'])
+    ->name('login.attempt')
+;
+
+Route::view('/login/success', 'auth.login-success')
+    ->name('login.success')
+;

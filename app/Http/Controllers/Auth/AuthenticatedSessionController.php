@@ -23,6 +23,6 @@ class AuthenticatedSessionController extends Controller
 
         $user = $request->getUser();
 
-        return redirect()->route('login.success');
+        return view('auth.login-success.' . $user->user_level, ['user' => $user]);
     }
 }

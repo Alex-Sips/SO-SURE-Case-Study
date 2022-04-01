@@ -15,20 +15,33 @@ class UserFactory extends Factory
     {
         return [
             'username' => $this->faker->name(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'password' => 'password',
         ];
     }
 
-    /**
-     * Indicate that the model's email address should be unverified.
-     *
-     * @return \Illuminate\Database\Eloquent\Factories\Factory
-     */
-    public function unverified()
+    public function normal()
     {
         return $this->state(function (array $attributes) {
             return [
-                'email_verified_at' => null,
+                'user_level' => 'user',
+            ];
+        });
+    }
+
+    public function admin()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'user_level' => 'admin',
+            ];
+        });
+    }
+
+    public function superAdmin()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'user_level' => 'superadmin',
             ];
         });
     }
